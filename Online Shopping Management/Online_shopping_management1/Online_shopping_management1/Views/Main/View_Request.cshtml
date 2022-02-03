@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Online_shopping_management1.Models.Order_table>
+
+@{
+    ViewBag.Title = "View_Request";
+    Layout = "~/Views/_Mainlayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <Center>
+                    <h1>View Your Request  </h1>
+                </Center>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table">
+                                        
+                                        <tr>
+                                            <center>
+                                                <h2 style="color:darkgrey">Your Request</h2>
+                                            </center>
+                                        </tr>
+                                        <tbody>
+                                            <tr>
+
+                                                <th>Stationary Name</th>
+                                                <th>Quantity</th>
+                                                <th>Date Of Order</th>
+                                                <th>Current Status</th>
+                                                <th>Price</th>
+                                                <th>Cancel</th>
+                                                <th>Edit</th>
+                                            </tr>
+
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Stationary.Stationary_Name)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Date_Of_Order)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Stat.Status_name)
+
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Stationary.Price)
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="@Url.Action("Cancel","Main",new {id = item.oid})"><Span style="color:red;">Cancel</Span></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Edit","Main",new {id = item.oid })"><Span style="color:blue;">Edit</Span></a>
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

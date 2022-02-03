@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="online_stationaryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin_table">
+    <Key>
+      <PropertyRef Name="adid" />
+    </Key>
+    <Property Name="adid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="admin_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Emp">
+    <Key>
+      <PropertyRef Name="empid" />
+    </Key>
+    <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="emp_role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="emp_contact" Type="Int64" />
+    <Property Name="Email_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Pass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Order_table" Relationship="online_stationaryModel.FK__Order_tab__Empid__38996AB5" FromRole="Emp" ToRole="Order_table" />
+  </EntityType>
+  <EntityType Name="Stat">
+    <Key>
+      <PropertyRef Name="stid" />
+    </Key>
+    <Property Name="stid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Order_table" Relationship="online_stationaryModel.FK__Order_tab__Stati__3A81B327" FromRole="Stat" ToRole="Order_table" />
+  </EntityType>
+  <EntityType Name="Stationary">
+    <Key>
+      <PropertyRef Name="s_id" />
+    </Key>
+    <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Stationary_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="Order_table" Relationship="online_stationaryModel.FK__Order_tab__Stati__398D8EEE" FromRole="Stationary" ToRole="Order_table" />
+  </EntityType>
+  <EntityContainer Name="online_stationaryEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin_table" EntityType="Self.admin_table" />
+    <EntitySet Name="Emps" EntityType="Self.Emp" />
+    <EntitySet Name="Stats" EntityType="Self.Stat" />
+    <EntitySet Name="Stationaries" EntityType="Self.Stationary" />
+    <EntitySet Name="Order_table" EntityType="online_stationaryModel.Order_table" />
+    <AssociationSet Name="FK__Order_tab__Empid__38996AB5" Association="online_stationaryModel.FK__Order_tab__Empid__38996AB5">
+      <End Role="Emp" EntitySet="Emps" />
+      <End Role="Order_table" EntitySet="Order_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_tab__Stati__398D8EEE" Association="online_stationaryModel.FK__Order_tab__Stati__398D8EEE">
+      <End Role="Stationary" EntitySet="Stationaries" />
+      <End Role="Order_table" EntitySet="Order_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order_tab__Stati__3A81B327" Association="online_stationaryModel.FK__Order_tab__Stati__3A81B327">
+      <End Role="Stat" EntitySet="Stats" />
+      <End Role="Order_table" EntitySet="Order_table" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Order_table">
+    <Key>
+      <PropertyRef Name="oid" />
+    </Key>
+    <Property Name="oid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Empid" Type="Int32" />
+    <Property Name="Stationary_id" Type="Int32" />
+    <Property Name="Statid" Type="Int32" />
+    <Property Name="Date_Of_Order" Type="DateTime" Precision="0" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Emp" Relationship="online_stationaryModel.FK__Order_tab__Empid__38996AB5" FromRole="Order_table" ToRole="Emp" />
+    <NavigationProperty Name="Stationary" Relationship="online_stationaryModel.FK__Order_tab__Stati__398D8EEE" FromRole="Order_table" ToRole="Stationary" />
+    <NavigationProperty Name="Stat" Relationship="online_stationaryModel.FK__Order_tab__Stati__3A81B327" FromRole="Order_table" ToRole="Stat" />
+  </EntityType>
+  <Association Name="FK__Order_tab__Empid__38996AB5">
+    <End Type="online_stationaryModel.Emp" Role="Emp" Multiplicity="0..1" />
+    <End Type="online_stationaryModel.Order_table" Role="Order_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emp">
+        <PropertyRef Name="empid" />
+      </Principal>
+      <Dependent Role="Order_table">
+        <PropertyRef Name="Empid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_tab__Stati__398D8EEE">
+    <End Type="online_stationaryModel.Stationary" Role="Stationary" Multiplicity="0..1" />
+    <End Type="online_stationaryModel.Order_table" Role="Order_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stationary">
+        <PropertyRef Name="s_id" />
+      </Principal>
+      <Dependent Role="Order_table">
+        <PropertyRef Name="Stationary_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order_tab__Stati__3A81B327">
+    <End Type="online_stationaryModel.Stat" Role="Stat" Multiplicity="0..1" />
+    <End Type="online_stationaryModel.Order_table" Role="Order_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stat">
+        <PropertyRef Name="stid" />
+      </Principal>
+      <Dependent Role="Order_table">
+        <PropertyRef Name="Statid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,76 @@
+﻿
+@model Online_shopping_management1.Models.Order_table
+@{
+    ViewBag.Title = "Cancel";
+    Layout = "~/Views/_Engineer.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <center>
+                    <h1>Cancel the order</h1>
+                </center>
+                <hr />
+                <h3>Are you sure you want to delete this?</h3>
+                <div>
+                    <h4>order_table</h4>
+                    <hr />
+                    @ViewBag.msg
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Date Of Order
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Date_Of_Order)
+                        </dd>
+
+                        <dt>
+                            Status Of Order
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Stat.Status_name)
+                        </dd>
+
+                        <dt>
+                            Quantity
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Quantity)
+                        </dd>
+
+
+                        <dt>
+                            Stationary Name
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Stationary.Stationary_Name)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-default" />
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

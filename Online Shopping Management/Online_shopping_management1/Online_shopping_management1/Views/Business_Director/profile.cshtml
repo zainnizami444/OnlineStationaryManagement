@@ -1,0 +1,32 @@
+﻿@model Online_shopping_management1.Models.Emp
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/_Business_Director.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="media align-items-center mb-4">
+                    <img class="mr-3" src="~/Image_upload/user.png" width="80" height="80" alt="">
+                    <div class="media-body">
+                        <h3 class="mb-0">@Model.emp_name</h3>
+                        <p class="text-muted mb-0">@Model.emp_role</p>
+                    </div>
+                </div>
+
+
+
+                <ul class="card-profile__info">
+                    <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>@Model.emp_contact</span></li>
+                    <li><strong class="text-dark mr-4">Email</strong> <span>@Model.Email_Adress</span></li>
+                </ul>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

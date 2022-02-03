@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="online_stationaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin_table">
+          <Key>
+            <PropertyRef Name="adid" />
+          </Key>
+          <Property Name="adid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admin_Email" Type="varchar" MaxLength="100" />
+          <Property Name="Pass" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_name" Type="varchar" MaxLength="100" />
+          <Property Name="emp_role" Type="varchar" MaxLength="100" />
+          <Property Name="emp_contact" Type="bigint" />
+          <Property Name="Email_Adress" Type="varchar" MaxLength="100" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
+          <Property Name="Pass" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Order_table">
+          <Key>
+            <PropertyRef Name="oid" />
+          </Key>
+          <Property Name="oid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empid" Type="int" />
+          <Property Name="Stationary_id" Type="int" />
+          <Property Name="Statid" Type="int" />
+          <Property Name="Date_Of_Order" Type="date" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Stat">
+          <Key>
+            <PropertyRef Name="stid" />
+          </Key>
+          <Property Name="stid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Stationary">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Stationary_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <Association Name="FK__Order_tab__Empid__38996AB5">
+          <End Role="Emp" Type="Self.Emp" Multiplicity="0..1" />
+          <End Role="Order_table" Type="Self.Order_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emp">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Order_table">
+              <PropertyRef Name="Empid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_tab__Stati__398D8EEE">
+          <End Role="Stationary" Type="Self.Stationary" Multiplicity="0..1" />
+          <End Role="Order_table" Type="Self.Order_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stationary">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="Order_table">
+              <PropertyRef Name="Stationary_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_tab__Stati__3A81B327">
+          <End Role="Stat" Type="Self.Stat" Multiplicity="0..1" />
+          <End Role="Order_table" Type="Self.Order_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stat">
+              <PropertyRef Name="stid" />
+            </Principal>
+            <Dependent Role="Order_table">
+              <PropertyRef Name="Statid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="online_stationaryModelStoreContainer">
+          <EntitySet Name="admin_table" EntityType="Self.admin_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emp" EntityType="Self.Emp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_table" EntityType="Self.Order_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stat" EntityType="Self.Stat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stationary" EntityType="Self.Stationary" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Order_tab__Empid__38996AB5" Association="Self.FK__Order_tab__Empid__38996AB5">
+            <End Role="Emp" EntitySet="Emp" />
+            <End Role="Order_table" EntitySet="Order_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_tab__Stati__398D8EEE" Association="Self.FK__Order_tab__Stati__398D8EEE">
+            <End Role="Stationary" EntitySet="Stationary" />
+            <End Role="Order_table" EntitySet="Order_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_tab__Stati__3A81B327" Association="Self.FK__Order_tab__Stati__3A81B327">
+            <End Role="Stat" EntitySet="Stat" />
+            <End Role="Order_table" EntitySet="Order_table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="online_stationaryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin_table">
+          <Key>
+            <PropertyRef Name="adid" />
+          </Key>
+          <Property Name="adid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="emp_role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="emp_contact" Type="Int64" />
+          <Property Name="Email_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order_table" Relationship="online_stationaryModel.FK__Order_tab__Empid__38996AB5" FromRole="Emp" ToRole="Order_table" />
+        </EntityType>
+        <EntityType Name="Stat">
+          <Key>
+            <PropertyRef Name="stid" />
+          </Key>
+          <Property Name="stid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order_table" Relationship="online_stationaryModel.FK__Order_tab__Stati__3A81B327" FromRole="Stat" ToRole="Order_table" />
+        </EntityType>
+        <EntityType Name="Stationary">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Stationary_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="Order_table" Relationship="online_stationaryModel.FK__Order_tab__Stati__398D8EEE" FromRole="Stationary" ToRole="Order_table" />
+        </EntityType>
+        <EntityContainer Name="online_stationaryEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin_table" EntityType="Self.admin_table" />
+          <EntitySet Name="Emps" EntityType="Self.Emp" />
+          <EntitySet Name="Stats" EntityType="Self.Stat" />
+          <EntitySet Name="Stationaries" EntityType="Self.Stationary" />
+          <EntitySet Name="Order_table" EntityType="online_stationaryModel.Order_table" />
+          <AssociationSet Name="FK__Order_tab__Empid__38996AB5" Association="online_stationaryModel.FK__Order_tab__Empid__38996AB5">
+            <End Role="Emp" EntitySet="Emps" />
+            <End Role="Order_table" EntitySet="Order_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_tab__Stati__398D8EEE" Association="online_stationaryModel.FK__Order_tab__Stati__398D8EEE">
+            <End Role="Stationary" EntitySet="Stationaries" />
+            <End Role="Order_table" EntitySet="Order_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order_tab__Stati__3A81B327" Association="online_stationaryModel.FK__Order_tab__Stati__3A81B327">
+            <End Role="Stat" EntitySet="Stats" />
+            <End Role="Order_table" EntitySet="Order_table" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Order_table">
+          <Key>
+            <PropertyRef Name="oid" />
+          </Key>
+          <Property Name="oid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empid" Type="Int32" />
+          <Property Name="Stationary_id" Type="Int32" />
+          <Property Name="Statid" Type="Int32" />
+          <Property Name="Date_Of_Order" Type="DateTime" Precision="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="Emp" Relationship="online_stationaryModel.FK__Order_tab__Empid__38996AB5" FromRole="Order_table" ToRole="Emp" />
+          <NavigationProperty Name="Stationary" Relationship="online_stationaryModel.FK__Order_tab__Stati__398D8EEE" FromRole="Order_table" ToRole="Stationary" />
+          <NavigationProperty Name="Stat" Relationship="online_stationaryModel.FK__Order_tab__Stati__3A81B327" FromRole="Order_table" ToRole="Stat" />
+        </EntityType>
+        <Association Name="FK__Order_tab__Empid__38996AB5">
+          <End Type="online_stationaryModel.Emp" Role="Emp" Multiplicity="0..1" />
+          <End Type="online_stationaryModel.Order_table" Role="Order_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emp">
+              <PropertyRef Name="empid" />
+            </Principal>
+            <Dependent Role="Order_table">
+              <PropertyRef Name="Empid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_tab__Stati__398D8EEE">
+          <End Type="online_stationaryModel.Stationary" Role="Stationary" Multiplicity="0..1" />
+          <End Type="online_stationaryModel.Order_table" Role="Order_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stationary">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="Order_table">
+              <PropertyRef Name="Stationary_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order_tab__Stati__3A81B327">
+          <End Type="online_stationaryModel.Stat" Role="Stat" Multiplicity="0..1" />
+          <End Type="online_stationaryModel.Order_table" Role="Order_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stat">
+              <PropertyRef Name="stid" />
+            </Principal>
+            <Dependent Role="Order_table">
+              <PropertyRef Name="Statid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="online_stationaryModelStoreContainer" CdmEntityContainer="online_stationaryEntities1">
+          <EntitySetMapping Name="admin_table">
+            <EntityTypeMapping TypeName="online_stationaryModel.admin_table">
+              <MappingFragment StoreEntitySet="admin_table">
+                <ScalarProperty Name="adid" ColumnName="adid" />
+                <ScalarProperty Name="admin_Email" ColumnName="admin_Email" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emps">
+            <EntityTypeMapping TypeName="online_stationaryModel.Emp">
+              <MappingFragment StoreEntitySet="Emp">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+                <ScalarProperty Name="emp_role" ColumnName="emp_role" />
+                <ScalarProperty Name="emp_contact" ColumnName="emp_contact" />
+                <ScalarProperty Name="Email_Adress" ColumnName="Email_Adress" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stats">
+            <EntityTypeMapping TypeName="online_stationaryModel.Stat">
+              <MappingFragment StoreEntitySet="Stat">
+                <ScalarProperty Name="stid" ColumnName="stid" />
+                <ScalarProperty Name="Status_name" ColumnName="Status_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stationaries">
+            <EntityTypeMapping TypeName="online_stationaryModel.Stationary">
+              <MappingFragment StoreEntitySet="Stationary">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="Stationary_Name" ColumnName="Stationary_Name" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_table">
+            <EntityTypeMapping TypeName="online_stationaryModel.Order_table">
+              <MappingFragment StoreEntitySet="Order_table">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Date_Of_Order" ColumnName="Date_Of_Order" />
+                <ScalarProperty Name="Statid" ColumnName="Statid" />
+                <ScalarProperty Name="Stationary_id" ColumnName="Stationary_id" />
+                <ScalarProperty Name="Empid" ColumnName="Empid" />
+                <ScalarProperty Name="oid" ColumnName="oid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

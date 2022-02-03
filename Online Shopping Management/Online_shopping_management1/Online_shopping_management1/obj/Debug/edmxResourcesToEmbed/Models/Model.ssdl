@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="online_stationaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin_table">
+    <Key>
+      <PropertyRef Name="adid" />
+    </Key>
+    <Property Name="adid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="admin_Email" Type="varchar" MaxLength="100" />
+    <Property Name="Pass" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Emp">
+    <Key>
+      <PropertyRef Name="empid" />
+    </Key>
+    <Property Name="empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_name" Type="varchar" MaxLength="100" />
+    <Property Name="emp_role" Type="varchar" MaxLength="100" />
+    <Property Name="emp_contact" Type="bigint" />
+    <Property Name="Email_Adress" Type="varchar" MaxLength="100" />
+    <Property Name="Username" Type="varchar" MaxLength="100" />
+    <Property Name="Pass" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="order_table">
+    <Key>
+      <PropertyRef Name="oid" />
+    </Key>
+    <Property Name="oid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Person_id" Type="int" />
+    <Property Name="Stationary_id" Type="int" />
+    <Property Name="Date_of_order" Type="date" />
+    <Property Name="Status_of_Order" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Stationary">
+    <Key>
+      <PropertyRef Name="s_id" />
+    </Key>
+    <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Stationary_Name" Type="varchar" MaxLength="100" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Price" Type="int" />
+    <Property Name="Image" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__order_tab__Perso__29572725">
+    <End Role="Emp" Type="Self.Emp" Multiplicity="0..1" />
+    <End Role="order_table" Type="Self.order_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emp">
+        <PropertyRef Name="empid" />
+      </Principal>
+      <Dependent Role="order_table">
+        <PropertyRef Name="Person_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__order_tab__Stati__2A4B4B5E">
+    <End Role="Stationary" Type="Self.Stationary" Multiplicity="0..1" />
+    <End Role="order_table" Type="Self.order_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stationary">
+        <PropertyRef Name="s_id" />
+      </Principal>
+      <Dependent Role="order_table">
+        <PropertyRef Name="Stationary_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="online_stationaryModelStoreContainer">
+    <EntitySet Name="admin_table" EntityType="Self.admin_table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp" EntityType="Self.Emp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="order_table" EntityType="Self.order_table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stationary" EntityType="Self.Stationary" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__order_tab__Perso__29572725" Association="Self.FK__order_tab__Perso__29572725">
+      <End Role="Emp" EntitySet="Emp" />
+      <End Role="order_table" EntitySet="order_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__order_tab__Stati__2A4B4B5E" Association="Self.FK__order_tab__Stati__2A4B4B5E">
+      <End Role="Stationary" EntitySet="Stationary" />
+      <End Role="order_table" EntitySet="order_table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

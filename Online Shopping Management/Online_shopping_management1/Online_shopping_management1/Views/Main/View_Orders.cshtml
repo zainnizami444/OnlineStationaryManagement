@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Online_shopping_management1.Models.Order_table>
+
+@{
+    ViewBag.Title = "View_Orders";
+    Layout = "~/Views/_Mainlayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <Center>
+                    <h1>All Orders Of Engineer</h1>
+
+
+                    <table class="table">
+                        <tr>
+                            <center>
+                                <h2 style="color:darkgrey">Engineer Orders</h2>
+                            </center>
+                        </tr>
+                        <tr>
+
+                            <th>
+                               Date Of Order
+                            </th>
+                            <th>
+                              Status
+                            </th>
+                            <th>
+                               Quantitiy
+                            </th>
+                            <th>
+                              Employee name
+                            </th>
+                            <th>
+                             Stationary
+                            </th>
+                            <th>
+                                Approve Or Reject
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Stationary.Stationary_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Emp.emp_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Stat.Status_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date_Of_Order)
+                                </td>
+                                <td>
+                                    <a href="  @Url.Action("AcceptOrReject", "Main", new { id = item.oid }) ">Approve Or Reject</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </Center>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

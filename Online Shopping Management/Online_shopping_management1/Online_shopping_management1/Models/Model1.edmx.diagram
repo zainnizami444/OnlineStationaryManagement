@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2bef3690ceee4592a75d758fd82c0a4f" Name="Diagram1">
+        <EntityTypeShape EntityType="online_stationaryModel.admin_table" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="online_stationaryModel.Emp" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="online_stationaryModel.Stat" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="online_stationaryModel.Stationary" Width="1.5" PointX="9.625" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="online_stationaryModel.Order_table" Width="1.5" PointX="3.125" PointY="1" />
+        <AssociationConnector Association="online_stationaryModel.FK__Order_tab__Empid__38996AB5" />
+        <AssociationConnector Association="online_stationaryModel.FK__Order_tab__Stati__398D8EEE" />
+        <AssociationConnector Association="online_stationaryModel.FK__Order_tab__Stati__3A81B327" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

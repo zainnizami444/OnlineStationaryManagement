@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Online_shopping_management1.Models.Stationary>
+
+@{
+    ViewBag.Title = "View_Stationary";
+    Layout = "~/Views/_Adminlayout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <table class="table">
+                    <tr>
+                        <center>
+                            <h2 style="color:darkgrey"> Stationary</h2>
+                        </center>
+                    </tr>
+                    <tr>
+                        <th>
+                            Stationary
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Price
+                        </th>
+
+                        <th>Edit</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationary_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+
+                            <td>
+                                <a href=" @Url.Action("Edit_Stationary", "Admin", new { id = item.s_id })">Edit</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

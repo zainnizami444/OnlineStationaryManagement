@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Online_shopping_management1.Models.Order_table>
+
+@{
+    ViewBag.Title = "Order_View";
+    Layout = "~/Views/_Mainlayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <Center>
+                    <h1>All Orders </h1>
+                </Center>
+
+                <table class="table">
+                    <tr>
+
+                        <th>
+                            Stationary Name
+                        </th>
+                        <th>
+                            Employee Name
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Status Of Order
+                        </th>
+                        <th>
+                            Date Of Order
+                        </th>
+                        <th>
+                            Percentage
+                        </th>
+                    </tr>
+                    @{
+                        int count = 0;
+                        int c = 0;
+                        int per = 0;
+
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationary.Stationary_Name)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Emp.emp_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @{
+                                    count = count + Convert.ToInt32(item.Stationary.Price);
+                                    c = Model.Count();
+                                }
+                                @Html.DisplayFor(modelItem => item.Stationary.Price)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stat.Status_name)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date_Of_Order)
+                            </td>
+                            <td>
+                                @{
+                                    per = Convert.ToInt32(item.Stationary.Price * 100) / count;
+
+                                }
+                                @per %
+                            </td>
+
+                        </tr>
+                    }
+                    <tr>
+                        <td>Total price : @count </td>
+                        <td>Number of orders : @c </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "F_A_Q";
+    Layout = "~/Views/_Business_Director.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <Center>
+                    <h1>F.A.Q </h1>
+                </Center>
+                <h4>How Do I Use This Portal ?</h4>
+                <p>
+                    After login you can change your password by Clicking on Change Password on navigation Bar,
+                    You can request stationary. You can Edit your Request and Cancel it.
+                </p>
+                <h4>How Do I Request a Stationary?</h4>
+                <p>
+                    You can request Stationary on this page <a href="@Url.Action("Request_Stationary","Main")">Request Stationary</a>
+                </p>
+                <h4>How Do I See my Request of a Stationary?</h4>
+                <p>
+                    You can see your request of a Stationary on this page <a href="@Url.Action("View_Stationary","Main")">View Your Stationary</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>

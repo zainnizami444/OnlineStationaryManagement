@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="online_stationaryModelStoreContainer" CdmEntityContainer="online_stationaryEntities">
+    <EntitySetMapping Name="admin_table">
+      <EntityTypeMapping TypeName="online_stationaryModel.admin_table">
+        <MappingFragment StoreEntitySet="admin_table">
+          <ScalarProperty Name="adid" ColumnName="adid" />
+          <ScalarProperty Name="admin_Email" ColumnName="admin_Email" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emps">
+      <EntityTypeMapping TypeName="online_stationaryModel.Emp">
+        <MappingFragment StoreEntitySet="Emp">
+          <ScalarProperty Name="empid" ColumnName="empid" />
+          <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+          <ScalarProperty Name="emp_role" ColumnName="emp_role" />
+          <ScalarProperty Name="emp_contact" ColumnName="emp_contact" />
+          <ScalarProperty Name="Email_Adress" ColumnName="Email_Adress" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_table">
+      <EntityTypeMapping TypeName="online_stationaryModel.order_table">
+        <MappingFragment StoreEntitySet="order_table">
+          <ScalarProperty Name="Status_of_Order" ColumnName="Status_of_Order" />
+          <ScalarProperty Name="Date_of_order" ColumnName="Date_of_order" />
+          <ScalarProperty Name="Stationary_id" ColumnName="Stationary_id" />
+          <ScalarProperty Name="Person_id" ColumnName="Person_id" />
+          <ScalarProperty Name="oid" ColumnName="oid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stationaries">
+      <EntityTypeMapping TypeName="online_stationaryModel.Stationary">
+        <MappingFragment StoreEntitySet="Stationary">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Stationary_Name" ColumnName="Stationary_Name" />
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

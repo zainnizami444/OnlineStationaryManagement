@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Online_shopping_management1.Models.Emp>
+
+@{
+    ViewBag.Title = "View_Employees";
+    Layout = "~/Views/_Adminlayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <table class="table">
+                    <tr>
+                        <center>
+                            <h2 style="color:darkgrey"> Employee</h2>
+                        </center>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.emp_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.emp_role)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.emp_contact)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email_Adress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Username)
+                        </th>
+                        <th>
+                            Edit
+                        </th>
+                       
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.emp_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.emp_role)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.emp_contact)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email_Adress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Employee_Edit","Admin")">Edit
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
